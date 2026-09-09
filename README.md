@@ -1,1 +1,0 @@
-# Do-Hedge-Ratios-Track-the-Optimum-Asset-Class-Evidence-on-Institutional-Currency-Hedging
