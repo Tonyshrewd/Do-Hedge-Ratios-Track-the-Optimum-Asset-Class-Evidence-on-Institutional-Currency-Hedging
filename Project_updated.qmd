@@ -1,0 +1,565 @@
+---
+title: "Do Hedge Ratios Track the Optimum?"
+subtitle: "Asset-Class Evidence on Institutional Currency Hedging"
+author: "Anthony Lamini"
+date: today
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    number-sections: true
+    embed-resources: true
+    fig-align: center
+    df-print: kable
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("02_paper_data.R", local = knitr::knit_global())
+```
+
+## Abstract {.unnumbered}
+
+I ask whether institutional investors revise their currency hedge ratios as the optimal hedge changes. The mean-variance benchmark of Campbell, Serfaty-de Medeiros and Viceira (2010) implies that the optimal hedge ratio depends on the covariance between currency and asset returns, so a given investor should hedge the currency risk of a dollar bond portfolio more heavily than that of a dollar equity portfolio. I exploit a property of that benchmark which, to my knowledge, has not previously been used as an identifying restriction: the *cost* of hedging is common to every sleeve of a single portfolio, whereas the *benefit* is not. Differencing the hedge ratio across asset classes within an investor therefore annihilates the cost term, and the bond--equity hedge gap must equal the covariance differential exactly. This yields a slope restriction of unity, and it removes the simultaneity that arises when the cross-currency basis enters a specification as a cost shifter. Estimating the restriction on investor-level hedge ratios reported separately for bond and equity holdings, I obtain a slope of 0.065 to 0.088 against a theoretical value of one, and I find the observed gap to be approximately one tenth as variable as the optimum it should track. Institutions order their hedges correctly across asset classes but do not revise that ordering as covariances evolve. I then apply the framework to a sleeve for which no hedge ratio is observed. Du and Huber exclude real estate from their measure of dollar asset allocation, and using a value-weighted index of US real estate investment trusts I find that real estate exhibits the most negative currency covariance of the three sleeves, implying the lowest optimal hedge ratio. Since real assets cannot readily be traded, they are also the sleeve in which an unrevised hedge ratio binds most tightly. The findings are preliminary and rest on two of three investors; I show that the third series is annual data interpolated to monthly frequency and exclude it.
+
+------------------------------------------------------------------------
+
+# Introduction
+
+Foreign investors hold trillions of dollars of U.S. securities and hedge a substantial share of the resulting currency exposure. Du and Huber (2026) document this in detail and draw a distinction I take as my point of departure: demand for U.S. *assets* is not the same as demand for the U.S. *dollar*, and the wedge between them is managed through foreign exchange derivatives. How that wedge is managed at the level of the individual asset class has not, so far as I am aware, been examined.
+
+Campbell, Serfaty-de Medeiros and Viceira (2010) establish that the optimal hedge is a property of the pairing of currency and asset rather than of the currency alone, being governed by the covariance between currency returns and the returns on the assets held. Applied to the dollar, the implication is specific. If the dollar appreciates in states where global equity markets decline, then for a foreign investor unhedged U.S. equity is partially self-hedging, since the currency gain offsets part of the equity loss. Where an asset instead appreciates alongside the dollar, no such offset arises. Optimal hedge ratios should therefore differ across the sleeves of a single portfolio.
+
+Du and Huber report the corresponding empirical regularity, noting that investors hedge dollar bonds at higher ratios than dollar equities and attributing this to Campbell et al. My contribution begins where that observation ends.
+
+## What I do
+
+I treat the asset-class differential not as a descriptive regularity but as an identifying restriction, on the basis of an asymmetry internal to the mean-variance solution. Consider one investor on one date. The cost of hedging --- the cross-currency basis, the interest-rate differential, risk aversion, exchange-rate volatility --- is identical for the bond sleeve and the equity sleeve, since it is the same institution, the same currency pair and the same forward contract. The benefit of hedging, governed by the return covariance, is not identical. It is the only quantity in the problem that carries an asset-class index.
+
+I therefore difference the hedge ratio across asset classes within an investor. Every common term cancels, and what survives is a prediction sharp enough to fail.
+
+## Why the design has a second use
+
+Du and Huber report that in their time-series specifications the coefficient on the basis carries the wrong sign relative to their own Proposition 1: more favourable hedging costs are associated with *higher* unhedged exposure. They attribute this to the basis being an equilibrium price co-determined with hedging quantities, and observe that disaggregation attenuates the problem. My differencing removes it by construction, since whatever the intermediary supply curve does to the basis on a given date it does identically to both sleeves of a given investor.
+
+## What I find
+
+The restriction fails, in a specific direction. The slope on the covariance differential is 0.065 to 0.088 where the model requires unity, and the observed gap is roughly one tenth as variable as the optimum. The coefficient on the basis is statistically indistinguishable from zero, so cost invariance itself is not rejected.
+
+I set out in Section 3 what patterns of coefficients would be consistent with which economic arrangements, and I am careful to distinguish those implications I derive from the model from those I infer by elimination. The joint pattern I observe --- a slope of approximately zero together with a cost coefficient of approximately zero --- is not implied by any optimising model I am aware of, and I read it as evidence that hedge ratios are set administratively rather than recomputed. I present that reading as an inference rather than as a tested hypothesis.
+
+Because the restriction holds for any partition of a portfolio into sleeves sharing a common hedging cost, the framework extends beyond the two asset classes for which hedge ratios are observed. Section 6 applies it to United States real estate, an asset class Du and Huber exclude explicitly. Real estate turns out to have the most negative currency covariance of the three sleeves, so it warrants the lowest hedge ratio. That matters for the main result: if hedge ratios are not revised, the cost of that rigidity is largest in the sleeve whose underlying position cannot itself be adjusted.
+
+I am equally explicit about limitations. In the course of the analysis I found that one of three investor series is annual data interpolated to monthly frequency, and I exclude it. I also find the covariance differential to be estimated with sufficient error for two of three investors that the test has little power there. I report both problems in full.
+
+------------------------------------------------------------------------
+
+# Related Literature
+
+I restrict myself here to work I have consulted directly.
+
+**Optimal currency hedging.** Campbell and Viceira (2002) and Campbell, Serfaty-de Medeiros and Viceira (2010) supply the framework on which I build: the optimal hedge depends on the covariance between currency and asset returns, so currencies that appreciate in adverse states warrant lower hedge ratios when held against risky assets. Anderson and Danthine (1980, 1981) establish the earlier hedging results on which that literature rests. Du and Huber extend the framework by adding expected returns arising from deviations from uncovered and covered interest parity, and it is their formulation I adopt.
+
+**Deviations from covered interest parity.** Du, Tepper and Verdelhan (2018) establish that CIP deviations persist outside crisis periods and are systematically related to balance-sheet costs, so that currency hedging is materially expensive. Gârleanu and Pedersen (2011) provide the theoretical link between margin constraints and violations of the law of one price. Du, Hébert and Huber (2022) examine whether the resulting intermediary constraints are priced. This literature establishes that the price of hedging varies over time; I use the fact that it varies identically across asset classes.
+
+**Institutional currency management.** Du and Huber (2026) provide the most comprehensive account of foreign institutional dollar holdings and hedging practices and are the direct antecedent of this paper. Sialm and Zhu (2024) document currency management by international fixed-income mutual funds, Opie and Riddiough (2023) examine the use of currency forwards by international equity mutual funds, and Liao and Zhang (2025) develop the hedging channel of exchange rate determination.
+
+**How I differ from Du and Huber.** The distinction is methodological. In estimating the mean-variance drivers of currency exposure, Du and Huber construct a single portfolio return per investor from bond and equity returns weighted by observed allocations and recover one blended covariance; in their regressions the bond-versus-equity composition is absorbed by sector fixed effects and treated as a nuisance. They therefore do not construct a separate optimum for each sleeve, and the comparison I make is unavailable within their design. Their contribution is the ordering. Mine is to ask whether the ordering is a calculation or a policy.
+
+------------------------------------------------------------------------
+
+# Model
+
+I proceed in five steps. I state the investor's problem and solve it, reproducing the benchmark in the form used by Du and Huber. I then apply the solution at the level of the individual sleeve, which is the step that departs from existing practice. I difference across sleeves to obtain the central restriction. I examine what the restriction assumes by relaxing its assumptions one at a time. Finally I derive the estimating equation and set out what coefficient patterns would be consistent with which arrangements.
+
+## The investor's problem
+
+Consider a non-U.S. investor whose home currency is not the dollar.
+
+| Symbol | Definition |
+|----|----|
+| $R_{a,t+1}$ | Excess return, in dollars, on USD asset class $a \in \{b,e\}$ |
+| $f_{t+1}$ | Dollar currency excess return accruing to this investor |
+| $\xi_t$ | Expected currency excess return, capturing UIP deviations |
+| $x_t$ | Cross-currency basis; $-x_t$ is the hedging cost from CIP deviations |
+| $V_t$ | $\operatorname{Var}_t(f_{t+1})$ |
+| $\gamma$ | Coefficient of risk aversion |
+| $\psi_{a,t}$ | Fraction of sleeve $a$'s dollar exposure left unhedged |
+| $h_{a,t}$ | Hedge ratio, $h_{a,t} = 1 - \psi_{a,t}$ |
+
+The currency excess return is $f_{t+1} = \Delta s_{t+1} - i^{1}_{t} + i_{t} - x_{t}$, with conditional expectation
+
+$$\mathbb{E}_t[f_{t+1}] = \xi_t - x_t \tag{1}$$
+
+Both components matter for what follows. The term $\xi_t$ is the expected excess return from holding foreign currency, positive when uncovered interest parity fails in the investor's favour. The term $-x_t$ is the cost of obtaining the hedge: the more negative the basis, the more expensive hedging becomes and the greater the incentive to leave exposure open. Following Du and Huber, I treat both as observable to the investor at $t$.
+
+Per unit invested in sleeve $a$, the return in home-currency terms is
+
+$$\Pi_{a,t+1} = R_{a,t+1} + \psi_{a,t}\,f_{t+1} \tag{2}$$
+
+The second term is the currency exposure retained: $\psi_{a,t}=0$ hedges completely, $\psi_{a,t}=1$ leaves the exposure open.
+
+## Solving for optimal exposure
+
+Taking the conditional moments of (2),
+
+$$\mathbb{E}_t[\Pi_{a,t+1}] = \mathbb{E}_t[R_{a,t+1}] + \psi_{a,t}(\xi_t - x_t) \tag{3}$$
+
+$$\operatorname{Var}_t(\Pi_{a,t+1}) = \operatorname{Var}_t(R_{a,t+1})
++ \psi_{a,t}^{2}V_t + 2\psi_{a,t}\operatorname{Cov}_t(R_{a,t+1},f_{t+1}) \tag{4}$$
+
+Note that $\psi_{a,t}$ enters the variance both directly, through its own squared term, and through its interaction with the asset return. The second channel is what makes the covariance a determinant of the optimum. The mean-variance objective is
+
+$$\mathcal{L}(\psi_{a,t}) = \mathbb{E}_t[R_{a,t+1}] + \psi_{a,t}(\xi_t - x_t)
+- \frac{\gamma}{2}\Big[\operatorname{Var}_t(R_{a,t+1}) + \psi_{a,t}^{2}V_t
++ 2\psi_{a,t}\operatorname{Cov}_t(R_{a,t+1},f_{t+1})\Big] \tag{5}$$
+
+Differentiating with respect to $\psi_{a,t}$,
+
+$$\frac{\partial\mathcal{L}}{\partial\psi_{a,t}}
+= (\xi_t - x_t) - \gamma\Big[\psi_{a,t}V_t + \operatorname{Cov}_t(R_{a,t+1},f_{t+1})\Big] = 0 \tag{6}$$
+
+The second derivative is $\partial^{2}\mathcal{L}/\partial\psi_{a,t}^{2} = -\gamma V_t < 0$, so the stationary point is a maximum. Dividing (6) through by $\gamma V_t$ and rearranging,
+
+$$\psi^{*}_{a,t} = \underbrace{\frac{\xi_t - x_t}{\gamma V_t}}_{\text{cost--return term}}
+\;-\; \underbrace{\beta_{a,t}}_{\text{covariance term}},
+\qquad \beta_{a,t} \equiv \frac{\operatorname{Cov}_t(R_{a,t+1},f_{t+1})}{V_t} \tag{7}$$
+
+Equation (7) is equation (3) of Du and Huber (2026); the covariance term is the contribution of Campbell et al. (2010). Optimal unhedged exposure rises with the expected currency return, rises with the cost of hedging, and falls with the covariance between currency and asset returns. The last of these is the economic content: an asset whose return moves with the currency compounds portfolio risk when left unhedged, and should be hedged more.
+
+## The step that departs from existing practice
+
+Du and Huber evaluate (7) once per investor, using a portfolio return blended across sleeves. I instead evaluate it **sleeve by sleeve**, applying the same first-order condition separately to the bond and equity components of one portfolio:
+
+$$\psi^{*}_{b,t} = \frac{\xi_t - x_t}{\gamma V_t} - \beta_{b,t}
+\qquad\qquad
+\psi^{*}_{e,t} = \frac{\xi_t - x_t}{\gamma V_t} - \beta_{e,t} \tag{8}$$
+
+Two things are worth stating plainly about this step. First, it is not a new model: it is the same first-order condition, evaluated at a finer partition of the portfolio. Second, it carries a substantive assumption --- that the investor chooses the currency overlay for each sleeve independently, taking the other as given. I examine the consequences of relaxing that assumption in Section 3.5.
+
+Inspecting (8), the leading term is numerically identical in both expressions. It contains only $\xi_t$, $x_t$, $\gamma$ and $V_t$, all of which are properties of the investor and the currency rather than of the asset held. The only object carrying a sleeve subscript is $\beta_{a,t}$.
+
+## The central restriction
+
+Converting to hedge ratios via $h_{a,t} = 1 - \psi^{*}_{a,t}$,
+
+$$G_t \equiv h_{b,t} - h_{e,t}
+= \left(1 - \psi^{*}_{b,t}\right) - \left(1 - \psi^{*}_{e,t}\right)
+= \psi^{*}_{e,t} - \psi^{*}_{b,t} \tag{9}$$
+
+The constant unity cancels because it appears in both hedge ratios. Substituting (8),
+
+$$G_t = \left[\frac{\xi_t - x_t}{\gamma V_t} - \beta_{e,t}\right]
+- \left[\frac{\xi_t - x_t}{\gamma V_t} - \beta_{b,t}\right] \tag{10}$$
+
+$$G_t = \underbrace{\frac{\xi_t - x_t}{\gamma V_t} - \frac{\xi_t - x_t}{\gamma V_t}}_{=\;0}
+\;+\; \beta_{b,t} - \beta_{e,t} \tag{11}$$
+
+$$G_t = \beta_{b,t} - \beta_{e,t} \;\equiv\; \Delta\beta_t \tag{12}$$
+
+The cost--return term vanishes. It does so not by assumption but because it does not depend on the sleeve index. The bond--equity hedge gap is a pure covariance object, and it follows immediately that
+
+$$\frac{\partial G_t}{\partial x_t} = 0, \qquad
+\frac{\partial G_t}{\partial \xi_t} = 0, \qquad
+\frac{\partial G_t}{\partial \gamma} = 0, \qquad
+\frac{\partial G_t}{\partial V_t} = 0 \tag{13}$$
+
+Every quantity emphasised in the empirical CIP literature enters both sleeves identically and therefore cannot move the differential. This is what makes the differential useful: it is immune to precisely the forces that make the *level* of hedging difficult to interpret.
+
+Equation (12) also implies a second restriction that does not depend on any regression specification. Since $G_t$ and $\Delta\beta_t$ are the same random variable,
+
+$$\frac{\operatorname{Var}(G_t)}{\operatorname{Var}(\Delta\beta_t)} = 1 \tag{14}$$
+
+## What the restriction assumes
+
+I now relax the two assumptions on which (12) rests.
+
+### A common risk-aversion coefficient
+
+Allowing sleeve-specific coefficients $\gamma_b$ and $\gamma_e$ in (8) and repeating the differencing,
+
+$$G_t = \Delta\beta_t - \frac{\xi_t - x_t}{V_t}
+\left(\frac{1}{\gamma_b} - \frac{1}{\gamma_e}\right) \tag{15}$$
+
+Cost invariance therefore requires $\gamma_b = \gamma_e$: the investor must value a unit of variance identically wherever in the portfolio it arises. I regard this as the natural benchmark, since $\gamma$ is a property of the institution rather than of the asset, and it is the assumption Du and Huber maintain when they estimate a single blended $\beta$. Equation (15) nonetheless makes clear that a rejection of cost invariance could in principle reflect sleeve-specific risk aversion rather than a constraint, and that the two are not separately identified in my setting.
+
+### Independent choice across sleeves
+
+Suppose instead the investor faces an aggregate constraint on hedging --- a limit on total notional, or a budget for hedging costs --- with multiplier $\lambda_t \geq 0$ entering both sleeve first-order conditions identically. Then
+
+$$\psi^{*}_{a,t} = \frac{\xi_t - x_t + \lambda_t}{\gamma V_t} - \beta_{a,t} \tag{16}$$
+
+and repeating the differencing gives $G_t = \Delta\beta_t$ once more, because $\lambda_t$ cancels exactly as the cost term does. **A binding aggregate hedging constraint does not by itself break cost invariance.** I regard this as a useful robustness property: the restriction survives a form of friction that might otherwise be thought to invalidate it.
+
+The differential moves only if the constraint is allocated across sleeves in a manner that responds to cost. With sleeve-specific multipliers,
+
+$$G_t = \Delta\beta_t + \frac{\lambda_{b,t} - \lambda_{e,t}}{\gamma V_t},
+\qquad
+\frac{\partial G_t}{\partial x_t}
+= \frac{1}{\gamma V_t}\,
+\frac{\partial(\lambda_{b,t} - \lambda_{e,t})}{\partial x_t} \tag{17}$$
+
+Equation (17) is a definition, not a prediction: it says only that a non-zero cost coefficient requires sleeve-specific rationing. What the *sign* of that coefficient would be does not follow from the model. I would reason as follows. An allocator facing a rising hedging cost and a fixed budget must reduce hedging somewhere. Since the benefit of hedging is lower on the sleeve with the smaller $\beta$ --- by (7), the sleeve for which the optimum already prescribes less hedging --- reducing there sacrifices less variance reduction per dollar saved. That would widen the differential, implying $\partial G_t/\partial x_t > 0$. I emphasise that this is an argument from the logic of constrained allocation and not a result I derive, and I do not treat it as a maintained hypothesis.
+
+## Estimating equation and competing arrangements
+
+Equation (12) implies
+
+$$G_{t} = \alpha + b\,\Delta\beta_{t} + c\,x_{t} + d\,\xi_{t} + \varepsilon_{t} \tag{18}$$
+
+with $\alpha = 0$, $b = 1$ and $c = d = 0$ under sleeve-level optimisation. The following table collects the coefficient patterns associated with different arrangements. I mark each row according to whether it follows from the model or is an inference on my part.
+
+| Arrangement | $b$ | $c$ | Var ratio | Basis |
+|----|----|----|----|----|
+| Sleeve-level optimisation | 1 | 0 | 1 | Derived, eqns (12)--(14) |
+| Aggregate hedging constraint | 1 | 0 | 1 | Derived, eqn (16) |
+| Sleeve-specific rationing | $(0,1)$ | $\neq 0$ | $<1$ | Derived, eqn (17); sign not derived |
+| Hedge ratios not revised | 0 | 0 | $\approx 0$ | **Inference, not derived** |
+
+The final row requires comment, since I do not want to present it as more than it is. No model I am aware of predicts that hedge ratios should be unresponsive to the covariance structure; on the contrary, the literature in Section 2 uniformly implies they should respond. That row is therefore not a competing theory but a **residual category**: the coefficient pattern one would observe if the differential were fixed over the sample and moved by neither the optimum nor the cost. Its economic content comes not from a model but from the observation that a quantity which does not respond to its determinants is not being chosen in response to them. I use it as a description of what the data would look like under that circumstance, and I am explicit in Section 5 that identifying *why* a differential might be unresponsive lies beyond what my design can establish.
+
+## Measurement error
+
+$\Delta\beta_t$ is estimated rather than observed. Writing $\widehat{\Delta\beta}_t = \Delta\beta_t + u_t$ with $u_t$ classical measurement error, and defining the reliability ratio
+
+$$\lambda \equiv \frac{\operatorname{Var}(\Delta\beta_t)}
+{\operatorname{Var}(\Delta\beta_t) + \operatorname{Var}(u_t)} \in (0,1] \tag{19}$$
+
+the probability limit of the univariate slope is
+
+$$\operatorname{plim}\hat b
+= \frac{\operatorname{Cov}(G_t, \widehat{\Delta\beta}_t)}{\operatorname{Var}(\widehat{\Delta\beta}_t)}
+= \frac{\operatorname{Var}(\Delta\beta_t)}{\operatorname{Var}(\Delta\beta_t)+\operatorname{Var}(u_t)}
+= \lambda \tag{20}$$
+
+under the null. The same factor applies to the variance ratio, since $\operatorname{Var}(\widehat{\Delta\beta}_t)$ appears in its denominator:
+
+$$\frac{\operatorname{Var}(G_t)}{\operatorname{Var}(\widehat{\Delta\beta}_t)} = \lambda \tag{21}$$
+
+Equations (20) and (21) have an important consequence that I emphasise because it is easily overlooked. **The variance ratio is not a measurement-error-free alternative to the regression; both are attenuated by the same factor.** The null against which each must be judged is therefore $\lambda$, not unity, and estimating $\lambda$ is part of the estimation problem rather than a robustness exercise.
+
+------------------------------------------------------------------------
+
+# Data
+
+I take all data from the replication archive of Du and Huber (2026), which allows the analysis to be conducted without recourse to proprietary sources.
+
+| Object | Source file | Notes |
+|----|----|----|
+| Hedge ratios by asset class | `hedging_by_security.csv` | Monthly; three investor types; bond and equity reported separately |
+| USD bond and equity excess returns | `monthly_return.csv` | One-month horizon |
+| FX excess returns | `monthly_return.csv` | By currency, from the investor's perspective |
+| Cross-currency basis | `hedging_data.csv` | Three-month, quarterly average |
+| US REIT returns | CRSP monthly stock file | SIC 6798, share codes 11 and 18, 2002--2021 |
+
+I match investors to home currencies: Australian pension funds to the Australian dollar and Dutch pension funds to the euro. Mutual funds are not tied to a single currency area, so I construct their currency return and hedging cost as USD-holdings-weighted averages across currency areas. I estimate $\beta_{a,t}$ over rolling 36- and 60-month windows of monthly returns, take the final observation within each quarter, and aggregate hedge ratios to quarterly frequency by averaging within quarter.
+
+## Summary statistics
+
+```{r}
+#| label: summary-stats
+tab <- do.call(rbind, lapply(c("auspension","dutchpension","mf"), function(e) {
+  s <- panel[panel$entity == e, ]
+  data.frame(
+    Investor      = e,
+    `Bond hedge`  = round(mean(s$h_bond,  na.rm = TRUE), 3),
+    `Equity hedge`= round(mean(s$h_eqty,  na.rm = TRUE), 3),
+    `Gap G`       = round(mean(s$G,       na.rm = TRUE), 3),
+    `SD of G`     = round(sd(s$G,         na.rm = TRUE), 3),
+    `Optimal gap` = round(mean(s$dbeta36, na.rm = TRUE), 3),
+    `SD optimal`  = round(sd(s$dbeta36,   na.rm = TRUE), 3),
+    Basis         = round(mean(s$basis,   na.rm = TRUE), 3),
+    N             = sum(!is.na(s$G)),
+    check.names = FALSE)
+}))
+knitr::kable(tab, caption = "Table 1. Hedge ratios, the observed gap, the optimal gap, and the hedging cost.")
+```
+
+Three features of Table 1 anticipate what follows. Every investor hedges bonds more heavily than equities, by 22 to 34 percentage points, which is the ordering Campbell et al. imply and Du and Huber report. The similarity of these gaps is notable given that hedge *levels* range from 3.5 to 87 per cent: institutions differing greatly in how much they hedge differ similarly in where they hedge. Most importantly for what follows, the standard deviation of the observed gap is in every case well below that of the optimum, whereas under (14) the two should coincide.
+
+## Are the series interpolated?
+
+Before drawing inferences from the smoothness of the observed gap I must establish that the smoothness is a property of behaviour rather than of data construction. The concern is not incidental: my central finding is that the gap moves too little, and a series manufactured from low-frequency observations would move too little by construction.
+
+I first searched the Du and Huber code for the construction of `hedge_ratio`. The file `hedging_by_security.csv` is only ever read and plotted; it is never built. This is consistent with the paper's description of hand-collection from company filings and national regulators, and it means there is no code to audit. I therefore test the series directly. Repeated *consecutive differences* are the signature of linear interpolation between low-frequency anchors, since interpolation imposes a constant increment between anchor points.
+
+```{r}
+#| label: interp-check
+ck <- do.call(rbind, lapply(c("auspension","dutchpension","mf"), function(e) {
+  x <- h$hedge_ratio[h$entity == e & h$security == "bond"]
+  d <- round(diff(x), 8)
+  brk <- which(c(TRUE, diff(d) != 0))
+  data.frame(Investor = e,
+             `Monthly obs` = length(x),
+             `Repeated diffs (%)` = round(100*mean(duplicated(d) & d != 0), 1),
+             `Anchor spacing (months)` = median(diff(brk)),
+             check.names = FALSE)
+}))
+knitr::kable(ck, caption = "Table 2. Interpolation diagnostic.")
+```
+
+The diagnostic is decisive. A repeated-difference share of two thirds corresponds exactly to quarterly anchors interpolated to monthly frequency, and eleven twelfths to annual anchors. Locating the dates at which the increment changes confirms the reading.
+
+![](output/fig4_interpolation.png)
+
+**Figure 1.** Raw monthly bond hedge ratios. Solid points mark the dates at which the increment changes; the line between them is interpolation.
+
+Australian pension funds and mutual funds are natively quarterly, and since I aggregate to quarterly frequency no artificial smoothing enters my analysis for those investors. Dutch pension funds are a different matter: the series contains **seven genuine observations across seven years**, anchored each December. Its 24 quarterly observations are constructed from approximately seven real ones. I exclude Dutch pension funds from my principal specification.
+
+------------------------------------------------------------------------
+
+# Results
+
+## The observed gap does not track the optimum
+
+![](output/fig1_gap_vs_optimum.png)
+
+**Figure 2.** The observed bond--equity hedge gap (heavy line) against the optimal gap implied by equation (12) (light line), by investor.
+
+Figure 2 conveys the central result more directly than any coefficient. The optimal gap traverses a range from approximately $-0.9$ to $1.2$ as covariances evolve; the observed gap is close to flat. Under (12) the two are the same object.
+
+![](output/fig2_scatter.png)
+
+**Figure 3.** Each point is one investor-quarter. Equation (12) requires every point to lie on the dashed 45-degree line.
+
+![](output/fig3_variance.png)
+
+**Figure 4.** Standard deviation of the observed gap against that of the optimum. The ratio is 1.0 under equation (14).
+
+## Estimating the restriction
+
+```{r}
+#| label: main-results
+res_tab <- do.call(rbind, lapply(c(36, 60), function(w) {
+  d <- panel_clean[complete.cases(panel_clean[, c("G", paste0("dbeta", w),
+                                                 "basis","ibor","fxvol")]), ]
+  f <- as.formula(paste("G ~", paste0("dbeta", w),
+                        "+ basis + ibor + fxvol + factor(entity)"))
+  rr <- nw(lm(f, data = d)); b <- rr[paste0("dbeta", w), ]
+  t1 <- (b$coef - 1)/b$se
+  data.frame(Window = paste0(w, " months"),
+             `b on optimal gap` = sprintf("%.3f (%.3f)", b$coef, b$se),
+             `p, H0: b = 1`     = sprintf("%.4f", 2*pnorm(-abs(t1))),
+             `c on basis`       = sprintf("%.3f (%.3f)", rr["basis","coef"], rr["basis","se"]),
+             `p, H0: c = 0`     = sprintf("%.3f", rr["basis","p"]),
+             N = nrow(d), check.names = FALSE)
+}))
+knitr::kable(res_tab, caption = "Table 3. Estimates of equation (18). Australian pensions and mutual funds; investor fixed effects; Newey-West standard errors with four lags.")
+```
+
+## Reading the estimates against the restriction
+
+**The slope** $b$. Equation (12) requires $b=1$. I estimate 0.065 at the 36-month window and 0.088 at 60 months, and the hypothesis $b=1$ is rejected at $p<0.0001$ in both. The two windows agree closely, which I regard as material: were the estimate an artefact of the smoothing induced by a particular window length, it should move substantially between them.
+
+**The cost coefficient** $c$. Equation (13) requires $c=0$. I estimate $-0.020$ and $-0.043$, neither statistically distinguishable from zero, so **cost invariance is not rejected**. This matters for interpretation as much as for the test. By (17), a non-zero $c$ would indicate sleeve-specific rationing --- an allocator trimming the hedge where it is worth least. The data give no support for that reading.
+
+**Joint interpretation.** Referring to the table in Section 3.6, the observed pattern $b\approx0$ with $c\approx0$ is inconsistent with the first three rows, each of which is derived from the model. Sleeve-level optimisation and an aggregate constraint both require $b=1$; sleeve-specific rationing requires $c\neq0$. The variance ratios of approximately 0.10 point the same way.
+
+What remains is the residual category. I therefore infer that the differential is not being revised in response to its determinants. I want to be precise about the status of this claim. It is not a hypothesis I have tested against an alternative, because I know of no model that predicts unresponsiveness and against which the optimising benchmark could be assessed. It is an inference by elimination: the coefficient pattern is what one would observe if the differential were substantially fixed over the sample, and it is inconsistent with the arrangements the model does describe. **Why** a differential might be fixed --- whether through governance, infrequent review, or costs of adjustment I do not observe --- is a question my design cannot answer, and I do not claim otherwise.
+
+**A supporting observation.** Table 1 shows the mean observed gap lying below the mean optimal gap for every investor. Institutions do not merely fail to track the optimum; they under-differentiate relative to it on average. I note this as a fact rather than interpreting it, since with two investors I cannot distinguish a systematic tendency from a coincidence of two sample means.
+
+------------------------------------------------------------------------
+
+# Extending the Framework to Real Estate
+
+The restriction derived in Section 3 is not specific to bonds and equities. Equation
+(12) holds for any partition of a portfolio into sleeves that share a common hedging
+cost, so the covariance term $\beta_{a,t}$ can be computed for any asset class whose
+returns are observable. This section applies the framework to United States real
+estate.
+
+The exercise is motivated by an explicit gap in the source data. Du and Huber state in
+footnote 15 that their measure of USD asset allocation "focuses on USD securities and
+excludes real estate and infrastructure." Their hedge ratios therefore cover only bond
+and equity sleeves, and no hedge ratio for a property allocation exists in their
+archive or, so far as I am aware, in any comparable cross-country source. I can
+consequently compute the optimal hedge for US real estate but cannot observe what any
+institution actually does. The exercise is normative, and I present it as such.
+
+## Data
+
+I construct a value-weighted index of US listed real estate investment trusts from the
+CRSP monthly stock file. I select securities with SIC code 6798 traded on the NYSE,
+AMEX or NASDAQ, restricting to share codes 11 and 18. The inclusion of share code 18 is
+material: it identifies REIT shares specifically and accounts for 31,605 of the 33,716
+firm-month observations, so a filter restricted to ordinary common stock would capture
+approximately six per cent of the universe. The sample spans January 2002 to December
+2021 and contains 334 distinct REITs, yielding 239 monthly index observations with
+between 110 and 170 constituents in each month. Index returns are weighted by lagged
+market capitalisation, since weighting on contemporaneous capitalisation embeds the
+current month's return in its own weight.
+
+To render REIT returns comparable to the bond and equity series I follow the
+transformation applied to equities in the source archive, taking twelve times the log
+capital gain. I omit the deduction of the lagged one-month interbank rate because that
+series is not contained in the archive, which provides three-month rates at quarterly
+frequency only. The omission is unlikely to matter for the object of interest: the
+short rate is common to all three sleeves at each date and is close to deterministic at
+monthly frequency, so it contributes little to the covariance with the currency return
+and differences out of $\beta$ almost entirely. Consistent with this, the standard
+deviation of the transformed REIT series is 0.756, against 0.717 for the equity series
+and 0.288 for the bond series, confirming that the three are on a comparable scale.
+
+## Results
+
+```{r}
+#| label: reit-betas
+reit_tab <- do.call(rbind, lapply(c("AUD","EUR"), function(ccy) {
+  fx <- m[[paste0(ccy, "_fx_holding_effective")]]
+  bb <- cov(m$USD_excess_10Y_holding_1M,   fx, use="complete.obs")/var(fx, na.rm=TRUE)
+  be <- cov(m$USD_excess_stock_holding_1M, fx, use="complete.obs")/var(fx, na.rm=TRUE)
+  br <- cov(m$reit_excess,                 fx, use="complete.obs")/var(fx, na.rm=TRUE)
+  s  <- m[m$year != 2020, ]
+  fx2 <- s[[paste0(ccy, "_fx_holding_effective")]]
+  be2 <- cov(s$USD_excess_stock_holding_1M, fx2, use="complete.obs")/var(fx2, na.rm=TRUE)
+  br2 <- cov(s$reit_excess,                 fx2, use="complete.obs")/var(fx2, na.rm=TRUE)
+  data.frame(Currency = ccy,
+             `Bond`   = round(bb, 3),
+             `Equity` = round(be, 3),
+             `REIT`   = round(br, 3),
+             `REIT less equity` = round(br - be, 3),
+             `REIT less equity, ex 2020` = round(br2 - be2, 3),
+             check.names = FALSE)
+}))
+knitr::kable(reit_tab, caption = "Table 5. Covariance of USD asset returns with the USD currency return, by asset class.")
+```
+
+![](output/fig6_reit_ordering.png)
+
+**Figure 6.** Covariance of USD asset returns with the USD currency return, by asset
+class and investor currency. Point estimates over 2002--2021; the precision
+considerations of Section 6.1 apply equally here.
+
+Three features of Table 5 bear on the argument.
+
+First, REIT returns exhibit the most negative covariance with the dollar of the three
+sleeves. By equation (7), a more negative $\beta_{a,t}$ implies a higher optimal
+unhedged exposure and therefore a *lower* optimal hedge ratio. The implied ordering is
+that bonds warrant the most hedging, equities less, and real estate least. The economic
+reading is that US real estate provides the largest natural currency offset for a
+foreign investor among the three sleeves examined.
+
+Second, the equity-to-REIT distance is of the same order as the bond-to-equity distance
+that motivates the main analysis. The gap is $-0.371$ against the Australian dollar and
+$-0.391$ against the euro. Real estate therefore occupies a distinct position in the
+covariance ordering rather than behaving as a variant of equity.
+
+Third, the result is not attributable to the market disruption of 2020. Excluding that
+year the gap is $-0.309$ for the Australian dollar and $-0.386$ for the euro, on 211
+rather than 220 monthly observations. The euro estimate is essentially unchanged and
+the Australian estimate attenuates modestly while remaining large.
+
+## Interpretation
+
+This finding bears on the main result rather than standing apart from it. Section 5
+establishes that the bond--equity differential does not move with the covariance
+structure that should determine it. If hedge ratios are in fact fixed rather than
+revised, the welfare cost of that rigidity is not uniform across the portfolio. It is
+largest where the underlying position cannot itself be adjusted.
+
+An investor holding listed equities who cannot revise a currency overlay retains a
+second margin: the equity position can be traded. An investor holding real assets does
+not have that option at comparable cost, so the currency overlay is the only available
+adjustment. Real estate is therefore the sleeve in which a fixed hedge ratio binds most
+tightly, and Table 5 indicates it is also the sleeve for which the appropriate hedge
+ratio departs furthest from that of equities. An institution applying a common overlay
+to its equity and real-asset sleeves would, on these estimates, be materially
+over-hedging the latter.
+
+## Limitations
+
+Three qualifications apply, and I regard the first as the most serious.
+
+Listed REITs are traded securities, not buildings. Their returns incorporate
+equity-market sentiment and trade at daily frequency, whereas direct property is
+appraised infrequently and illiquid. The covariance I measure is that of a security
+whose cash flows derive from property, which is not the same object as the covariance
+of property itself. Any inference about institutions holding direct real estate rests
+on the assumption that the two covariances are similar, which I cannot verify with
+these data.
+
+The estimates in Table 5 are point estimates reported without standard errors. Section
+6.1 establishes that covariances estimated from monthly returns are imprecise, and
+there is no reason to think the REIT covariance is better measured than the others.
+The consistency of the gap across two currencies and across the exclusion of 2020
+provides some reassurance, but it is not a substitute for inference.
+
+Finally, because no hedge ratio for property allocations is observed, this section
+characterises what the optimal hedge would be and does not test whether any institution
+attains it. Constructing such a series would require hand collection from institutional
+disclosures of the kind Du and Huber undertook for securities, and I regard it as the
+natural extension of this work rather than a part of it.
+
+------------------------------------------------------------------------
+
+# Caveats
+
+## Measurement error in the covariance differential
+
+By (20) and (21) the null is $b=\lambda$ rather than $b=1$, and the variance ratio is subject to the same attenuation.
+
+```{r}
+#| label: reliability
+rel <- do.call(rbind, lapply(c("auspension","dutchpension","mf"), function(e) {
+  s <- panel[panel$entity == e & complete.cases(panel[, c("dbeta36","dbeta60")]), ]
+  data.frame(Investor = e,
+             Lambda = round(cor(s$dbeta36, s$dbeta60), 3),
+             `Var ratio` = round(sd(s$G, na.rm=TRUE)/sd(s$dbeta36, na.rm=TRUE), 3),
+             N = nrow(s), check.names = FALSE)
+}))
+knitr::kable(rel, caption = "Table 4. Reliability, measured as the correlation between the 36- and 60-month estimates.")
+```
+
+![](output/fig5_reliability.png)
+
+**Figure 5.** The 36-month against the 60-month estimate of the covariance differential.
+
+I use the correlation between the two window lengths as a proxy for $\lambda$. This is imperfect, since the windows overlap and their errors are therefore not independent, and I would expect the overlap to bias the proxy upward. It nonetheless orders the investors informatively, and reliability must be reported by investor rather than pooled, since the pooled figure conceals substantial heterogeneity.
+
+For mutual funds the two windows agree closely and the estimate is usable. For Australian pension funds the proxy is *negative*, which indicates not noise around a positive value but that the two windows are capturing different objects; the test has little power for that investor at monthly frequency. **My rejection therefore rests principally on mutual funds, for whom the covariance differential is best measured and for whom the variance ratio is 0.11 against a null of 0.72.** That the clearest rejection occurs where measurement is best is reassuring, since attenuation alone would predict the opposite ordering.
+
+## What remains to be established
+
+1.  **Daily-frequency covariances.** Estimating $\beta$ from daily rather than monthly returns would reduce $\operatorname{Var}(u_t)$ and raise $\lambda$. I regard this as the most valuable extension, since by (20) the reliability ratio determines the null against which the estimates must be judged.
+2.  **Sample breadth.** Two usable investors is a thin cross-section. Identification is within-investor across asset class, which mitigates the concern, but external validity is limited.
+3.  **Sleeve-specific risk aversion.** By (15), cost invariance requires a common $\gamma$ across sleeves, and I cannot separately identify a violation of that assumption from a sleeve-specific constraint.
+4.  **The mechanism behind unresponsiveness.** As set out in Section 5.3, my design establishes that the differential does not move with its determinants but cannot establish why.
+5.  **Observed hedging of real assets.** Section 6 characterises the optimal hedge for US real estate but cannot test whether institutions attain it, since no hedge ratio for property allocations is reported. Constructing one would require hand collection from institutional disclosures of the kind Du and Huber undertook for securities.
+
+------------------------------------------------------------------------
+
+# References {.unnumbered}
+
+Anderson, R. W., and J.-P. Danthine. 1980. Hedging and joint production: Theory and illustrations. *Journal of Finance* 35:487–98.
+
+Anderson, R. W., and J.-P. Danthine. 1981. Cross hedging. *Journal of Political Economy* 89:1182–96.
+
+Campbell, J. Y., K. S. de Medeiros, and L. M. Viceira. 2010. Global currency hedging. *Journal of Finance* 65:87–122.
+
+Campbell, J. Y., and L. M. Viceira. 2002. *Strategic asset allocation: Portfolio choice for long-term investors*. Oxford: Oxford University Press.
+
+Du, W., B. Hébert, and A. W. Huber. 2022. Are intermediary constraints priced? *Review of Financial Studies* 36:1464–507.
+
+Du, W., and A. W. Huber. 2026. Dollar asset holdings and hedging around the globe. *Review of Financial Studies*, advance article.
+
+Du, W., A. Tepper, and A. Verdelhan. 2018. Deviations from covered interest rate parity. *Journal of Finance* 73:915–57.
+
+Gârleanu, N., and L. H. Pedersen. 2011. Margin-based asset pricing and deviations from the law of one price. *Review of Financial Studies* 24:1980–2022.
+
+Liao, G., and T. Zhang. 2025. The hedging channel of exchange rate determination. *Review of Financial Studies* 38:1–38.
+
+Opie, W., and S. Riddiough. 2023. On the use of currency forwards: Evidence from international equity mutual funds. Working Paper, Deakin University.
+
+Sialm, C., and Q. Zhu. 2024. Currency management by international fixed income mutual funds. *Journal of Finance* 79:4037–81.
+
+
+
+cat(readLines("Project_updated.qmd")[20:28], sep = "\n")
